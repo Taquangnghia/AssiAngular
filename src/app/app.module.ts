@@ -19,6 +19,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AddBookComponent } from './page/admin/add-book/add-book.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CartComponent } from './page/client/cart/cart.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     SignupComponent,
     DetailComponent,
     AddBookComponent,
+    CartComponent,
 
   ],
   imports: [
@@ -50,7 +53,7 @@ import { ToastrModule } from 'ngx-toastr';
          progressAnimation:'increasing',
          preventDuplicates:true
        }
-     )
+     )  
   ],
   providers: [],
   bootstrap: [AppComponent],

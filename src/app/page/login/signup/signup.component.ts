@@ -34,6 +34,8 @@ this.authSevice.signup(this.Signupform.value).subscribe((data)=>{
   localStorage.setItem('user',JSON.stringify(data))
   this.toastr.success("dang Ky thanh cong")
   this.router.navigateByUrl('signin')
+},()=>{
+  this.toastr.error('dangkythatbai')
 })
 }
 }

@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BookService } from 'src/app/services/book.service';
-import { ProductService } from 'src/app/services/product.service';
-import { Book, CartBook } from 'src/app/types/Book';
-import { CartType, Product } from 'src/app/types/Product';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Book} from 'src/app/types/Book';
+import { Product } from 'src/app/types/Product';
+
 
 @Component({
   selector: 'app-detail',
@@ -14,12 +15,15 @@ import { CartType, Product } from 'src/app/types/Product';
 export class DetailComponent implements OnInit {
   _id:string | null;
   book : Book;
+
   cartValue: number = 1;
   constructor(private bookservice:BookService,
               private activateRoute:ActivatedRoute,
-              private toastr:ToastrService) {
+              private toastr:ToastrService,
+              private lsService: LocalStorageService,
+              ) {
                 this._id="";
-                this.book ={
+                this.book = { 
                   _id:"",
                   name:'',
                   price:0,
@@ -27,10 +31,11 @@ export class DetailComponent implements OnInit {
                   img:'',
                   newPrice:0,
                   category: "",
-                  statu:"",
-                  sale:0
+                  quantity:0,
+                  totalPrice: 0
+                
 
-                }
+                };
   }
 
   ngOnInit(): void {
@@ -47,22 +52,8 @@ export class DetailComponent implements OnInit {
       ...this.book,
       quantity: +this.cartValue,
       totalPrice: +this.cartValue * (this.book.newPrice == 0 ? this.book.price : this.book.newPrice)
-      
-    };
-    const cartLocal = JSON.parse(localStorage.getItem("cart") || '[]');
-    console.log(cartItem, cartLocal);
-    const existItem = cartLocal.find((item: CartBook) => item._id === cartItem._id);
-    this.toastr.success('gio hang thanh cong')
-    if (existItem) {
-      existItem.quantity += cartItem.quantity;
-      existItem.totalPrice += cartItem.totalPrice;
-      cartLocal.totalCart += cartItem.totalPrice
     }
-    else {
-      cartLocal.push(cartItem);
-      cartLocal.totalCart += cartItem.totalPrice;
-    }
-    localStorage.setItem("cart", JSON.stringify(cartLocal));
+    this.lsService.setItem(cartItem)
     this.cartValue = 1;
   }
 }

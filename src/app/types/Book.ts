@@ -4,21 +4,29 @@ export type Book ={
     img:string,
     price:number,
     desc:string,
-    sale:number,
-    statu?:string,
     category:string,
     newPrice: number,
+    quantity:number,
+    totalPrice: number;
+
 }
-export type CartBook = {
+export type createType = {
+    name: string,
+    price: number,
+    newPrice: number,
+    image: string,
+    category: string,
+    desc: string
+  
+  }
+  export type CartType = {
     _id: string,
     name: string,
     price: number,
     newPrice: number,
-    imge: string[],
-    stock: number,
+    img: string,
     category: string,
-    description: string,
-    author: string,
+    desc: string,
     quantity: number,
     totalPrice: number;
   

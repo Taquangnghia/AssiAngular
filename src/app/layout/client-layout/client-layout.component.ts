@@ -28,9 +28,12 @@ export class ClientLayoutComponent implements OnInit {
       localStorage.removeItem("user");
       this.toastr.success('Dang xuat thanh cong')
       this.router.navigateByUrl('signin')
-    }
 
-  
+    }
+    getLocalstorage(){
+      if (!localStorage.getItem('user')) return
+      else return JSON.parse(localStorage.getItem('user') as string)
+    }
   }
   
   

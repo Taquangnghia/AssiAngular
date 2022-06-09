@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './check/auth.guard';
 import { FooterComponent } from './client/components/footer/footer.component';
 import { HeaderComponent } from './client/components/header/header.component';
 import { MainComponent } from './client/components/main/main.component';
@@ -9,6 +10,7 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
 import { AddBookComponent } from './page/admin/add-book/add-book.component';
 import { AdminComponent } from './page/admin/admin.component';
+import { CartComponent } from './page/client/cart/cart.component';
 import { DetailComponent } from './page/client/detail/detail.component';
 import { SigninComponent } from './page/login/signin/signin.component';
 import { SignupComponent } from './page/login/signup/signup.component';
@@ -25,19 +27,20 @@ const routes: Routes = [
       {
         path:":id/detail",
         component:DetailComponent
+      },
+      {
+        path:'giohang',
+        component:CartComponent
       }
-  
     ]
   },
-  {
-    path:'chitiet',
-    component:MainComponent
-  },
+
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent},
   {
     path:'admin',
     component:AdminLayoutComponent,
+    canActivate:[AuthGuard],
     children:[
       {
         path:'list',
@@ -57,6 +60,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[AuthGuard]
 })
 export class AppRoutingModule { }

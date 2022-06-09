@@ -1,0 +1,33 @@
+<header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-bold text-gray-900">Thông tin sản phẩm </h1>
+    </div>
+  </header>
+<div>
+    <table class="w-full">
+        <thead>
+        <tr class="text-left">
+            <th>STT</th>
+            <th>Image</th>
+            <th>Tênsp</th>
+            <th>Thông tin sản phẩm</th>
+            <th>Giá tiền</th>
+            <th></th>
+        </tr>
+        <tbody id="table-news"> 
+                <tr *ngFor="let books of book">
+                        <td></td>
+                        <td><img src="{{books.img}}" width="50" /></td>
+                        <td>{{books.name}}</td>
+                        <td>{{books.desc}}</td>
+                        <td>{{books.price}}</td>
+                        <td></td>
+                        <td>
+                        <a routerLink="/admin/edit/{{books._id}}" >Edit</a>
+                            <button  class="btn bg-red-500 p-3 rounded text-white inline-block" (click)="onRemove(books._id)" >Delete</button>
+                        </td>
+                    </tr>
+        </tbody>
+  
+    </table>
+</div>

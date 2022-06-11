@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BookService } from 'src/app/services/book.service';
+import { CartService } from 'src/app/services/cart.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { Book} from 'src/app/types/Book';
+import { Book, CartType} from 'src/app/types/Book';
 import { Product } from 'src/app/types/Product';
 
 
@@ -13,14 +14,14 @@ import { Product } from 'src/app/types/Product';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  _id:string | null;
+  _id:string ;
   book : Book;
-
-  cartValue: number = 1;
+  quantityCart : number;
   constructor(private bookservice:BookService,
               private activateRoute:ActivatedRoute,
               private toastr:ToastrService,
               private lsService: LocalStorageService,
+              private cartService: CartService,
               ) {
                 this._id="";
                 this.book = { 
@@ -32,28 +33,36 @@ export class DetailComponent implements OnInit {
                   newPrice:0,
                   category: "",
                   quantity:0,
-                  totalPrice: 0
-                
+                  totalPrice: 0,
+                  status:true,
+                  detail:''
 
                 };
+                this.quantityCart = 1
   }
 
   ngOnInit(): void {
-    this._id = this.activateRoute.snapshot.paramMap.get('id');
+    this._id = this.activateRoute.snapshot.params['id']
     this.bookservice.getOneBook(this._id).subscribe((data)=>{
       this.book = data
     })
   }
-  onChangeCartValue(event: any) {
-    this.cartValue = event.target.value;
+  onChange(event: any) {
+    this.quantityCart  = event.target.value;
   }
-  onAddToCart() {
-    const cartItem = {
+  showToast(){
+    this.toastr.success(`Thêm ${this.book.name} vào giỏ hàng thành công`)
+
+  }
+  addToCart() {
+    this.showToast()
+    const addItem = {
       ...this.book,
-      quantity: +this.cartValue,
-      totalPrice: +this.cartValue * (this.book.newPrice == 0 ? this.book.price : this.book.newPrice)
+      quantity: +this.quantityCart
+   
     }
-    this.lsService.setItem(cartItem)
-    this.cartValue = 1;
+    console.log(addItem)
+    this.cartService.setItem(addItem);
+    this.quantityCart  = 1;
   }
 }

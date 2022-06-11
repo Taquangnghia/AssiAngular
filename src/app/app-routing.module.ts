@@ -10,7 +10,10 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
 import { ClientLayoutComponent } from './layout/client-layout/client-layout.component';
 import { AddBookComponent } from './page/admin/add-book/add-book.component';
 import { AdminComponent } from './page/admin/admin.component';
+import { CategoryAddComponent } from './page/admin/category/category-add/category-add.component';
+import { CategoryComponent } from './page/admin/category/category.component';
 import { CartComponent } from './page/client/cart/cart.component';
+import { CatergoryComponent } from './page/client/catergory/catergory.component';
 import { DetailComponent } from './page/client/detail/detail.component';
 import { SigninComponent } from './page/login/signin/signin.component';
 import { SignupComponent } from './page/login/signup/signup.component';
@@ -31,6 +34,10 @@ const routes: Routes = [
       {
         path:'giohang',
         component:CartComponent
+      },
+      {
+        path:'category/:id',
+        component:CatergoryComponent
       }
     ]
   },
@@ -53,7 +60,22 @@ const routes: Routes = [
       {
         path:'add',
         component:AddBookComponent
-      }
+      },
+      {
+        path:'category',
+      
+        children:[
+          {
+            path:'',
+            component:CategoryComponent,
+          },
+          {
+            path:'add',
+            component:CategoryAddComponent
+          }
+        ]
+      },
+  
     ]
   }
 ];

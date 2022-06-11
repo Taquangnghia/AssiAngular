@@ -23,9 +23,12 @@
                         <td>{{books.price}}</td>
                         <td></td>
                         <td>
+                      
+                        <td class="status-products-true" *ngIf="books.status==true" (click)="onStatus(books._id!)"><button>Avtived</button></td>
+                        <td class="status-products-false" *ngIf="books.status==false" (click)="onStatus(books._id!)"><button>Disable</button></td>
                         <a routerLink="/admin/edit/{{books._id}}" >Edit</a>
                             <button  class="btn bg-red-500 p-3 rounded text-white inline-block" (click)="onRemove(books._id)" >Delete</button>
-                        </td>
+                 
                     </tr>
         </tbody>
   

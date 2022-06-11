@@ -21,6 +21,10 @@ import { AddBookComponent } from './page/admin/add-book/add-book.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CartComponent } from './page/client/cart/cart.component';
 
+import { CatergoryComponent } from './page/client/catergory/catergory.component';
+import { CategoryComponent } from './page/admin/category/category.component';
+import { CategoryAddComponent } from './page/admin/category/category-add/category-add.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +41,9 @@ import { CartComponent } from './page/client/cart/cart.component';
     DetailComponent,
     AddBookComponent,
     CartComponent,
+    CatergoryComponent,
+    CategoryComponent,
+    CategoryAddComponent,
 
   ],
   imports: [

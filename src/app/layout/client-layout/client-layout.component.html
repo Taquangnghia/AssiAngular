@@ -19,8 +19,10 @@
             <a class="py-4 px-2  border-purple-500 border-b-4 text-purple-500 font-semibold" routerLink="/">Home</a>
             
     
-            <a routerLink="nav" class="py-4 px-2  border-purple-500 font-semibold hover:text-purple-500 transition duration-300">Truyện Tranh</a>
-            
+        <div *ngFor="let item of category">
+          <a  routerLink="category/{{item._id}}" class="py-4 px-2  border-purple-500 font-semibold hover:text-purple-500 transition duration-300"*ngIf="item.status==true" >{{item.name}}</a>
+        </div>
+          
      
           
             <a routerLink="giohang" class="py-4 px-2  border-purple-500 font-semibold hover:text-purple-500 transition duration-300">Giỏ hàng</a>
@@ -64,6 +66,7 @@
       </div>
       </main>
   </div>
+  
 
 
   <router-outlet></router-outlet>

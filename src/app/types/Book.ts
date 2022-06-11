@@ -1,14 +1,15 @@
 export type Book ={
-    _id:string,
+    _id?:string,
     name:string,
     img:string,
     price:number,
-    desc:string,
-    category:string,
-    newPrice: number,
-    quantity:number,
-    totalPrice: number;
-
+    desc?:string,
+    category?:string,
+    newPrice?: number,
+    quantity?:number,
+    totalPrice?: number;
+    status:boolean,
+    detail:string
 }
 export type createType = {
     name: string,
@@ -16,8 +17,8 @@ export type createType = {
     newPrice: number,
     image: string,
     category: string,
-    desc: string
-  
+    desc: string,
+    status:boolean,
   }
   export type CartType = {
     _id: string,
@@ -29,5 +30,6 @@ export type createType = {
     desc: string,
     quantity: number,
     totalPrice: number;
+    status:boolean,
   
   }

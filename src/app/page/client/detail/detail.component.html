@@ -68,13 +68,13 @@
            
                 Số lượng
               
-              <input type="number" (change)="onChangeCartValue($event)" [value]="cartValue" matInput>
+                <input [value]="quantityCart" (input)="onChange($event)" type="number" min="0" value="1">
             
   
             <!-- Sizes -->
        
   
-            <button type="submit" class="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" (click)="onAddToCart()">Add to bag</button>
+            <button type="submit" class="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" (click)="addToCart()">Add to bag</button>
           </form>
         </div>
   

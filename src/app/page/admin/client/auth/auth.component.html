@@ -7,7 +7,7 @@
     <table class="w-full">
         <thead>
         <tr class="text-left">
-            <th>STT</th>
+        
            
             <th>Email</th>
           
@@ -17,14 +17,19 @@
         <tbody id="table-news"> 
                 <tr *ngFor="let item of auth" >
                         <td>{{item.email}}</td>
-                        <td></td>
+                        <td *ngIf="item.role ==1">
+                          Admin
+                        </td>
+                        <td *ngIf="item.role ==0">
+                        Nguoi dung
+                        </td>
               
               
 
                         <td class="status-products-true" *ngIf="item.status==true" (click)="onStatus(item._id!)" ><button>Avtived</button></td>
                         <td class="status-products-false" *ngIf="item.status==false"(click)="onStatus(item._id!)"   ><button>Disable</button></td>
                        
-                            <button  class="btn bg-red-500 p-3 rounded text-white inline-block"   >Delete</button>
+                            <button  class="btn bg-red-500 p-3 rounded text-white inline-block" (click)="ondelete(item._id)"  >Delete</button>
                  
                     </tr>
         </tbody>

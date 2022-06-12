@@ -22,4 +22,7 @@ export class AuthService {
   updateAut(_id:string,data:any):Observable<any>{
     return this.http.put(`${environment.user}/${_id}`,data)
   }
+  deleteAuth(_id:string):Observable<User>{
+    return this.http.delete<User>(`${environment.user}/${_id}`)
+  }
 }

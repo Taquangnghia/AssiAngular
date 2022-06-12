@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/types/auth';
@@ -10,7 +11,7 @@ import { User } from 'src/app/types/auth';
 })
 export class AuthComponent implements OnInit {
   auth:User[];
-  constructor(private authSivece:AuthService,private toastr:ToastrService) {
+  constructor(private authSivece:AuthService,private toastr:ToastrService,private route:Router) {
     this.auth =[]
    }
 
@@ -31,6 +32,19 @@ onStatus(id:string){
       })
     }
   })
-}}
+}
+ondelete(_id:any){
+  const config = window.confirm("ban muon xoa ko")
+  if(config && _id){
+    this.authSivece.deleteAuth(_id).subscribe(()=>{
+      this.getAuth();
+      alert("xoa tc")
+      this.route.navigateByUrl('/admin/auth')
+    })
+  }
+ 
+}
+}
+
 
 

@@ -5,7 +5,7 @@
       <div class="max-w-6xl mx-auto px-4">
         <div class="flex justify-between">
           <div class="flex space-x-7">
-            <a class="flex items-center py-4 px-2" href="/">
+            <a class="flex items-center py-4 px-2" routerLink="/">
               <img class="h-8 w-8 mr-2" src="https://res.cloudinary.com/dqyoluczh/image/upload/v1644757139/pcynoy4txejwsnppllke.png" alt="">
               <span class="font-semibold text-gray-500 text-lg">Book Store</span>
             </a>
@@ -39,14 +39,17 @@
         <span class="block text-purple-500">Quý Khách hàng</span>
        
       </h1>
-      <div *ngIf="getLocalstorage().role!=0">
+      <div >
         <strong class="d-none d-sm-block ms-1">{{getLocalstorage().user.name}}</strong>
         <!-- <h1>{{loggedInUser}}</h1> -->
       <h1 id="username" class="text-red" ></h1>
       <button id="logout"  (click)="logOutHandle()">Đăng xuất
       </button>
-      <div>
-        <button routerLink="admin/list"> admin</button>
+      <div *ngIf="getLocalstorage().user.role==0">
+        <button routerLink="admin/list"  > </button>
+      </div>
+      <div *ngIf="getLocalstorage().user.role ==1">
+        <button routerLink="admin/list"  > admin</button>
       </div>
       </div>
      

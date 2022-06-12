@@ -23,9 +23,9 @@
        </div>
        <div class="flex mx-3 mb-6 mt-6">
        <label class="block text-xs text-gray-700 font-bold mb-2 tracking-wider">Loai</label> 
-       <select id="loai" class="mt-10" *ngFor="let item of category"   formControlName="categorys">
-       <option  ></option>
-       <option >{{item.name}}</option>
+       <select id="loai" class="mt-10"   formControlName="category">
+       <option *ngFor="let item of category" value="{{item._id}}" >{{item.name}}</option>
+
        </select>
        </div>
        <div class="flex mx-3 mb-6 mt-6">

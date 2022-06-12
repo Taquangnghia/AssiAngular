@@ -28,7 +28,7 @@ book :Book[];
     const cofig = confirm("ban muon xoa");
     if(cofig && _id){
       this.bookService.DeleteBook(_id).subscribe(()=>{
-        this.getBook;
+        this.getBook();
         this.toast.success('Da xoa thanh cong')
         
       })

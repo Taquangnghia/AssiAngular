@@ -39,13 +39,17 @@
         <span class="block text-purple-500">Quý Khách hàng</span>
        
       </h1>
-      <div *ngIf="getLocalstorage()">
+      <div *ngIf="getLocalstorage().role!=0">
         <strong class="d-none d-sm-block ms-1">{{getLocalstorage().user.name}}</strong>
         <!-- <h1>{{loggedInUser}}</h1> -->
       <h1 id="username" class="text-red" ></h1>
       <button id="logout"  (click)="logOutHandle()">Đăng xuất
       </button>
+      <div>
+        <button routerLink="admin/list"> admin</button>
       </div>
+      </div>
+     
      
       
       <div>

@@ -12,6 +12,7 @@ import { AddBookComponent } from './page/admin/add-book/add-book.component';
 import { AdminComponent } from './page/admin/admin.component';
 import { CategoryAddComponent } from './page/admin/category/category-add/category-add.component';
 import { CategoryComponent } from './page/admin/category/category.component';
+import { AuthComponent } from './page/admin/client/auth/auth.component';
 import { CartComponent } from './page/client/cart/cart.component';
 import { CatergoryComponent } from './page/client/catergory/catergory.component';
 import { DetailComponent } from './page/client/detail/detail.component';
@@ -60,6 +61,10 @@ const routes: Routes = [
       {
         path:'add',
         component:AddBookComponent
+      },
+      {
+        path:'auth',
+        component:AuthComponent
       },
       {
         path:'category',

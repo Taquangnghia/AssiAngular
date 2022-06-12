@@ -19,22 +19,34 @@ export class SigninComponent implements OnInit {
     ) { 
     this.Signinform = new FormGroup ({
       email:new FormControl('',[]),
-      password:new FormControl('',[])
+      password:new FormControl('',[]),
+
+      
     })
   }
 
   ngOnInit(): void {
   }
   onSubmit(){
+ 
     this.authService.signin(this.Signinform.value).subscribe((data)=>{
-      
-      console.log(data);
       localStorage.setItem('user',JSON.stringify(data))
-      this.toastr.success('dangnhapthanhcong')
-      this.router.navigateByUrl('/');
+      if(this.getLocalstorage().user.status ==true){
+        this.toastr.success('dangnhapthanhcong')
+        this.router.navigateByUrl('/');
+      }else{
+        this.toastr.info('tk bi vo hieu hoa');
+        localStorage.removeItem('user')
+      }
+     
 
     },()=>{
       this.toastr.error('dangnhapthatbai')
     })
   }
+  getLocalstorage(){
+    if (!localStorage.getItem('user')) return
+    else return JSON.parse(localStorage.getItem('user') as string)
+  }
+
 }

@@ -16,4 +16,10 @@ export class AuthService {
   signin(data:User):Observable<UserToken>{
     return this.http.post<UserToken>(`${environment.signin}`,data)
   }
+  getAuth():Observable<User[]>{
+    return this.http.get<User[]>(environment.user)
+  }
+  updateAut(_id:string,data:any):Observable<any>{
+    return this.http.put(`${environment.user}/${_id}`,data)
+  }
 }

@@ -24,6 +24,7 @@ import { CartComponent } from './page/client/cart/cart.component';
 import { CatergoryComponent } from './page/client/catergory/catergory.component';
 import { CategoryComponent } from './page/admin/category/category.component';
 import { CategoryAddComponent } from './page/admin/category/category-add/category-add.component';
+import { AuthComponent } from './page/admin/client/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CategoryAddComponent } from './page/admin/category/category-add/categor
     CatergoryComponent,
     CategoryComponent,
     CategoryAddComponent,
+    AuthComponent,
 
   ],
   imports: [

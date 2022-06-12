@@ -12,7 +12,7 @@ import { Category } from 'src/app/types/category';
 })
 export class AddBookComponent implements OnInit {
   bookform:FormGroup;
-  book:string
+  id:string
   category:Category[]
   constructor(  private productService: BookService, // cung cấp createProduct
   private router: Router, // cung cấp navigate điều hướng
@@ -24,29 +24,31 @@ export class AddBookComponent implements OnInit {
        
          // tên custom validate
       ]),
-      price: new FormControl('',[]),
+      price: new FormControl(0,[]),
       desc:new FormControl('',[]),
       img:new FormControl('',[]),
-      categorys:new FormControl('',[])
+      category:new FormControl('',[])
+      
 
      
     });
 
-    this.book = '0';
+    this.id = '';
     this.category = []
   }
 
   ngOnInit(): void {
     this.getCategory()
-    this.book = this.activateRoute.snapshot.params['id'];
-    if (this.book) {
-      this.productService.getOneBook(this.book).subscribe((data)=>{
+    this.id = this.activateRoute.snapshot.params['id'];
+    console.log(this.id)
+    if (this.id) {
+      this.productService.getOneBook(this.id).subscribe((data)=>{
         this.bookform.patchValue({
           name:data.name,
           price:data.price,
           desc:data.desc,
           img:data.img,
-          categorys:this.category
+          category:data.category
 
         })
       })
@@ -57,17 +59,19 @@ export class AddBookComponent implements OnInit {
   onSbumit(){
     const submitData = this.bookform.value;
     console.log(this.bookform.value);
-       if (this.book !== '0' || this.book !== undefined ) {
-      return this.productService.updateBook(this.book, submitData).subscribe(data => {
-        
-        this.router.navigateByUrl('admin/list');
-      });
-    }else{
-      return  this.productService.CreateBook(submitData).subscribe((data)=>{
-        alert('Thêm thành công! ')
-        this.router.navigate(['/admin/product'])
+    if (this.id != undefined) {
+      return this.productService.updateBook(this.id,this.bookform.value).subscribe(()=>{
+       
+        setTimeout(() => {
+          this.router.navigateByUrl('/admin/list')
+        }, 700);
       })
     }
+      return this.productService.CreateBook(submitData).subscribe((data)=>{
+        alert('Thêm thành công! ')
+        this.router.navigateByUrl('/admin/list')
+      })
+    
    
   }
   getCategory(){

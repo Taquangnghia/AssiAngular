@@ -47,10 +47,13 @@ category:Category[];
       this.router.navigateByUrl('signin')
 
     }
+    // lay user 
     getLocalstorage(){
       if (!localStorage.getItem('user')) return
       else return JSON.parse(localStorage.getItem('user') as string)
     }
+
+
     getCategory(){
       this.bookService.getCategory().subscribe((data)=>{
         this.category = data;

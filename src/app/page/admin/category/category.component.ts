@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { BookService } from 'src/app/services/book.service';
@@ -11,6 +11,7 @@ import { Category } from 'src/app/types/category';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
+
   catergory:Category []
   constructor(private catergoryservic:BookService,private toastr:ToastrService,
     private router:Router) {

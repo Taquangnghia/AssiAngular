@@ -16,10 +16,14 @@ id_cater:string
    }
 
   ngOnInit(): void {
-    this.id_cater = this.activate.snapshot.params['id']
-    this.bookService.getBookCategory(this.id_cater).subscribe(data=>{
-      this.books = data
+    this.activate.paramMap.subscribe(params=>{
+      this.id_cater =params.get('id') as string
+    this.activate.snapshot.params['id']
+      this.bookService.getBookCategory(this.id_cater).subscribe(data=>{
+        this.books = data
+      })
     })
+   
   }
 
 }
